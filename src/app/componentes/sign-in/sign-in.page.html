@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+          <ion-button (click)="goBack()">
+            <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <ion-title text-center>Sign-in</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <br><br><br>
+  <img class="icon" src = "assets/icon/signin.png">
+  <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input [(ngModel)]="email" type="text"  name="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input [(ngModel)]="password" type="password"  name="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>I am </ion-label>
+    <ion-select (change)="onChange($event.target.value)" [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Select One">
+      <ion-select-option value="1">A Teacher</ion-select-option>
+      <ion-select-option value="2">A Student Manager</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <br><br>
+  <ion-button color="secondary" (click)="onSubmitSignIn()" expand="block">Sign In</ion-button> <!--El expand es para que el boton se extienda al tamanno de la pantalla-->
+
+</ion-content>
