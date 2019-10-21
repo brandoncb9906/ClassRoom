@@ -1,11 +1,29 @@
-<ion-header>
-  <ion-toolbar color="secondary">
-    <ion-title text-center>Manager Student Home</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-    <ion-button expand="block">Ver tareas</ion-button>
-    <br>
-    <ion-button (click)="onLogout()" expand="block" color="danger">Logout</ion-button>
-</ion-content>
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="principal">
+       <ion-header>
+         <ion-toolbar color="primary">
+           <ion-title>Start Menu</ion-title>
+         </ion-toolbar>
+       </ion-header>
+       <ion-content>
+         <ion-list>
+           <ion-item>{{user.email}}</ion-item>
+           <ion-item color="danger" (click)="onLogout()">LogOut</ion-item>
+         </ion-list>
+       </ion-content>
+  </ion-menu>
+  
+  <ion-header id="principal">
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+            <ion-button (click)="toggleMenu()">
+              <ion-icon slot="icon-only" name="menu"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+      <ion-title text-center>Student Manager Home</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  </ion-content>
+</ion-app>

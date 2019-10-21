@@ -15,11 +15,11 @@ export class TeacherHomePage implements OnInit {
   public usuario: any = {};
   public instituteActual: any;
 
-  constructor(public router: Router, public authService: AuthService, private menuCtrl: MenuController, private alertController: AlertController) {
+  constructor(public router: Router, public authService: AuthService, 
+    private menuCtrl: MenuController, private alertController: AlertController) {
 
     this.instituteList.push("TEC");
     this.authService.aFauth.authState.subscribe(user => {
-
       if (!user) {
         return;
       }
