@@ -1,14 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-button (click)="goBack()">
-            <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
-          </ion-button>
-      </ion-buttons>
-    <ion-title>{{name}}</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+              <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+      <ion-title>Groups</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
-
-</ion-content>
+  <ion-content>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="addGroups()" color="tertiary">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+  <ion-button *ngFor="let b of groupsList" expand="block" (click)="goToGroup()">{{b}}</ion-button>
+  </ion-content>
+</ion-app>

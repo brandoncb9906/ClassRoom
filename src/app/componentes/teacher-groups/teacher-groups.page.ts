@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TeacherHomePage } from '../../componentes/teacher-home/teacher-home.page';
-
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-teacher-groups',
@@ -10,14 +10,36 @@ import { TeacherHomePage } from '../../componentes/teacher-home/teacher-home.pag
 })
 export class TeacherGroupsPage implements OnInit {
 
-  public name;
+  groupsList = []
 
-  constructor(public router: Router) { 
+  constructor(public router: Router, private alertController: AlertController) { 
      }
 
   ngOnInit() {
   }
 
+  
+  async addGroups(){ // Muestra una alerta para agregar el nombre de una institucion
+    const alert = await this.alertController.create({
+      header: "Create Group",
+      subHeader: "Type the name of the Group: ",
+      inputs: [
+        {name: 'name',
+        type: 'text',
+        placeholder: 'Group Name'
+        }],
+      buttons: ['Cancel','OK']
+    });
+    await alert.present();
+    let result = await alert.onDidDismiss();
+
+    this.groupsList.push(result.data.values.name);
+    console.log(result.data.values.name);
+  }
+
+  goToGroup(){
+    this.router.navigate(['/teacher-admi-group']);
+  }
 
   goBack(){
     this.router.navigate(['/teacher-home']);

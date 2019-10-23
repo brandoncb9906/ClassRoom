@@ -16,7 +16,8 @@ export class TeacherHomePage implements OnInit {
   public instituteActual: any;
 
   constructor(public router: Router, public authService: AuthService, 
-    private menuCtrl: MenuController, private alertController: AlertController) {
+    private menuCtrl: MenuController,
+    private alertController: AlertController) {
 
     this.instituteList.push("TEC");
     this.authService.aFauth.authState.subscribe(user => {
