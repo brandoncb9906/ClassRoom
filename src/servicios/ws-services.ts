@@ -21,8 +21,8 @@ constructor() { }
       nombre: req.nombre,
       apellido1: req.apellido1,
       apellido2: req.apellido2,
-      correo: req.correo,
-      tipo: req.tipo
+      correo: req.email,
+      tipo: req.iAm
     })
     .then(function (response) {
       console.log(response);

@@ -17,6 +17,7 @@ export class SignInPage implements OnInit {
     email: '',
     password: '',
     iAm: ''
+    
   }
 
 
@@ -42,7 +43,8 @@ export class SignInPage implements OnInit {
     this.authService.register(this.datos.email,this.datos.password).then(authService =>{
       console.log(authService)
       if(this.datos.iAm == 'Profesor'){
-        console.log("profesoooor")
+        console.log('INSERTAR PROFESOR')
+        console.log(this.datos)
         //LLamar a metodo de insertar profesor
         this.wsService.insertarProfesor(this.datos);
       }
