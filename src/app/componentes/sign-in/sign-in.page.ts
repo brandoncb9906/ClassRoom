@@ -26,6 +26,7 @@ export class SignInPage implements OnInit {
   ngOnInit() {
   }
 
+  //Metodo para cambiar el tipo
   onChange(type: any){
     if(type==1){
       this.datos.iAm = 'Profesor';
@@ -36,10 +37,20 @@ export class SignInPage implements OnInit {
   
   }
 
+  //Metodo para registrar al usuario en el firebase y en la base de datos
   onSubmitSignIn(){
     this.authService.register(this.datos.email,this.datos.password).then(authService =>{
       console.log(authService)
-      this.wsService.enviarRegistro(this.datos);
+      if(this.datos.iAm == 'Profesor'){
+        console.log("profesoooor")
+        //LLamar a metodo de insertar profesor
+        this.wsService.insertarProfesor(this.datos);
+      }
+      if(this.datos.iAm == 'Encargado'){
+        console.log("encargadooo")
+        //LLamar a metodo de insertar encargado
+        this.wsService.insertarEncargado(this.datos);
+      }
       this.router.navigate(['/login']);
     }).catch(err => console.log(err))
   }
