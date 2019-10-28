@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title text-center>Login</ion-title>
+    <ion-title text-center>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,17 +8,17 @@
   <br><br><br>
   <img class="icon" src = "assets/icon/login.png">
   <ion-item>
-    <ion-label position="floating">Email</ion-label>
+    <ion-label position="floating">Correo</ion-label>
     <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Password</ion-label>
+    <ion-label position="floating">Contraseña</ion-label>
     <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
   </ion-item>
   <br><br>
-  <ion-button (click)="onSubmitLogin()" expand="block">Log in</ion-button> <!--El expand es para que el boton se extienda al tamanno de la pantalla-->
+  <ion-button (click)="onSubmitLogin()" expand="block">Inciar Sesion</ion-button> <!--El expand es para que el boton se extienda al tamanno de la pantalla-->
   <br>
-  <ion-button (click)="signIn()" expand="block">Sign in</ion-button>
+  <ion-button (click)="signIn()" expand="block">Registrarse</ion-button>
   <!--<br>Esto es para dejar un espacio
   <ion-button (click)="signInWithGoogle(1)" expand="block">Log in as a Teacher</ion-button> 
   <br>

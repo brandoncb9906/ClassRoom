@@ -12,7 +12,8 @@ export class TeacherGroupsPage implements OnInit {
 
   groupsList = []
 
-  constructor(public router: Router, private alertController: AlertController) { 
+  constructor(public router: Router, 
+    private alertController: AlertController) { 
      }
 
   ngOnInit() {
@@ -21,14 +22,14 @@ export class TeacherGroupsPage implements OnInit {
   
   async addGroups(){ // Muestra una alerta para agregar el nombre de una institucion
     const alert = await this.alertController.create({
-      header: "Create Group",
-      subHeader: "Type the name of the Group: ",
+      header: "Agregar grupo",
+      subHeader: "Digite el nombre del grupo: ",
       inputs: [
         {name: 'name',
         type: 'text',
-        placeholder: 'Group Name'
+        placeholder: 'Nombre'
         }],
-      buttons: ['Cancel','OK']
+      buttons: ['Cancelar','Aceptar']
     });
     await alert.present();
     let result = await alert.onDidDismiss();

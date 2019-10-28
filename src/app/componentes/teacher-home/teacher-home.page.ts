@@ -19,7 +19,7 @@ export class TeacherHomePage implements OnInit {
     private menuCtrl: MenuController,
     private alertController: AlertController) {
 
-    this.instituteList.push("TEC");
+    this.instituteList.push("Escuela Santa Clara");
     this.authService.aFauth.authState.subscribe(user => {
       if (!user) {
         return;
@@ -41,14 +41,14 @@ export class TeacherHomePage implements OnInit {
 
   async addInstitution(){ // Muestra una alerta para agregar el nombre de una institucion
     const alert = await this.alertController.create({
-      header: "Create Institucion",
-      subHeader: "Type the name of the institution: ",
+      header: "Agregar Institución",
+      subHeader: "Digite el nombre de la institución: ",
       inputs: [
         {name: 'name',
         type: 'text',
-        placeholder: 'Institucion Name'
+        placeholder: 'Nombre'
         }],
-      buttons: ['Cancel','OK']
+      buttons: ['Cancelar','Aceptar']
     });
     await alert.present();
     let result = await alert.onDidDismiss();
@@ -59,7 +59,7 @@ export class TeacherHomePage implements OnInit {
 
   async onLogout(){
     const alert = await this.alertController.create({
-      message: "Are you sure to <strong>log out</strong>?",
+      message: "Desea <strong>salir</strong>?",
       buttons: [
         {
           text: 'No',
