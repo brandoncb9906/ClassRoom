@@ -16,6 +16,6 @@
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-  <ion-button *ngFor="let b of groupsList" expand="block" (click)="goToGroup()">{{b}}</ion-button>
+  <ion-button *ngFor="let b of groupsList" expand="block" (click)="goToGroup(b)">{{b}}</ion-button>
   </ion-content>
 </ion-app>

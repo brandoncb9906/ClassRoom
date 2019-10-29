@@ -89,8 +89,9 @@ export class TeacherHomePage implements OnInit {
     this.wsService.insertarInstitucion(this.data);
   }
 
-  goToInstitute(){
+  goToInstitute(b){
+    console.log(b);
+    this.wsService.sendNameI(b);
     this.router.navigate(['/teacher-groups']);
-    console.log(this.instituteActual);
   }
 }

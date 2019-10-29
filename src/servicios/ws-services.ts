@@ -65,7 +65,7 @@ constructor() { }
   insertarGrupos(req: any){
     axios.post(this.ws_url + 'agenda/addGrupo', {
       nombreGrupo: req.nombreGrupo,
-      nombreInstitucion: this.institucionActual
+      codigoGrupo: req.codigoGrupo
     })
     .then(function (response) {
       console.log(response);
@@ -74,5 +74,34 @@ constructor() { }
       console.log(error);
     });
   }
+
+  //Metodo para enviar los datos al backend para guardar el nombre de la institucion
+  sendNameI(req: any){
+    console.log("NOMBRE?"+req)
+    axios.post(this.ws_url + 'agenda/sendNameI', {
+      nombre: req
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  //Metodo para enviar los datos al backend para guardar el nombre del grupo
+  sendNameG(req: any){
+    console.log("NOMBRE?"+req)
+    axios.post(this.ws_url + 'agenda/sendNameG', {
+      nombre: req
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  
 
 }

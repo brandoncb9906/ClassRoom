@@ -15,7 +15,7 @@ export class TeacherGroupsPage implements OnInit {
 
   public data = {
     nombreGrupo: '',
-    nombreInstucion: ''
+    codigoGrupo: ''
   }
 
   constructor(public router: Router, 
@@ -35,18 +35,25 @@ export class TeacherGroupsPage implements OnInit {
         {name: 'name',
         type: 'text',
         placeholder: 'Nombre'
+        },
+        {name: 'codigo',
+        type: 'text',
+        placeholder: 'Codigo'
         }],
       buttons: ['Cancelar','Aceptar']
     });
     await alert.present();
     let result = await alert.onDidDismiss();
     this.data.nombreGrupo = result.data.values.name;
+    this.data.codigoGrupo = result.data.values.codigo;
     this.guardarGrupos();
     this.groupsList.push(result.data.values.name);
     console.log(result.data.values.name);
   }
 
-  goToGroup(){
+  goToGroup(b){
+    console.log("GRUPOOOO" + b);
+    this.wsService.sendNameG(b);
     this.router.navigate(['/teacher-admi-group']);
   }
 
