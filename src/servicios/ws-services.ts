@@ -9,6 +9,7 @@ const axios = require('axios');
 export class wsServices {
 
   ws_url = "http://localhost:3000/";
+  institucionActual: '';
 
 constructor() { }
   
@@ -35,7 +36,8 @@ constructor() { }
   //Metodo para enviar los datos al backend para insetar un encargado
   insertarEncargado(req: any){
     axios.post(this.ws_url + 'agenda/addEncargado', {
-      correo: req.correo
+      correo: req.email,
+      tipo: req.iAm
     })
     .then(function (response) {
       console.log(response);
@@ -45,5 +47,32 @@ constructor() { }
     });
   }
 
-
+  //Metodo para enviar los datos al backend para insetar una institucion
+  insertarInstitucion(req: any){
+    axios.post(this.ws_url + 'agenda/addInstitucion', {
+      nombre: req.nombre,
+      correo: req.usuario
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
+
+  //Metodo para enviar los datos al backend para insetar una institucion
+  insertarGrupos(req: any){
+    axios.post(this.ws_url + 'agenda/addGrupo', {
+      nombreGrupo: req.nombreGrupo,
+      nombreInstitucion: this.institucionActual
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+}

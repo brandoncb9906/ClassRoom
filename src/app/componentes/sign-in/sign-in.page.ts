@@ -43,14 +43,13 @@ export class SignInPage implements OnInit {
     this.authService.register(this.datos.email,this.datos.password).then(authService =>{
       console.log(authService)
       if(this.datos.iAm == 'Profesor'){
-        console.log('INSERTAR PROFESOR')
         console.log(this.datos)
         //LLamar a metodo de insertar profesor
         this.wsService.insertarProfesor(this.datos);
       }
       if(this.datos.iAm == 'Encargado'){
-        console.log("encargadooo")
         //LLamar a metodo de insertar encargado
+        console.log(this.datos)
         this.wsService.insertarEncargado(this.datos);
       }
       this.router.navigate(['/login']);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TeacherHomePage } from '../../componentes/teacher-home/teacher-home.page';
 import { AlertController } from '@ionic/angular';
+import { wsServices } from "../../../servicios/ws-services";
 
 @Component({
   selector: 'app-teacher-groups',
@@ -12,8 +13,14 @@ export class TeacherGroupsPage implements OnInit {
 
   groupsList = []
 
+  public data = {
+    nombreGrupo: '',
+    nombreInstucion: ''
+  }
+
   constructor(public router: Router, 
-    private alertController: AlertController) { 
+    private alertController: AlertController,
+    private wsService: wsServices) { 
      }
 
   ngOnInit() {
@@ -33,13 +40,19 @@ export class TeacherGroupsPage implements OnInit {
     });
     await alert.present();
     let result = await alert.onDidDismiss();
-
+    this.data.nombreGrupo = result.data.values.name;
+    this.guardarGrupos();
     this.groupsList.push(result.data.values.name);
     console.log(result.data.values.name);
   }
 
   goToGroup(){
     this.router.navigate(['/teacher-admi-group']);
+  }
+
+  //Metodo para guardar grupos
+  guardarGrupos(){
+    this.wsService.insertarGrupos(this.data);
   }
 
   goBack(){

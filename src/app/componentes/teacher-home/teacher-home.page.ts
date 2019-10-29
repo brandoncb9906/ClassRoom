@@ -3,6 +3,7 @@ import { AuthService } from '../../../servicios/auth.service';
 import { MenuController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Router } from "@angular/router";
+import { wsServices } from "../../../servicios/ws-services";
 
 @Component({
   selector: 'app-teacher-home',
@@ -14,10 +15,15 @@ export class TeacherHomePage implements OnInit {
   instituteList = []
   public usuario: any = {};
   public instituteActual: any;
+  public data = {
+    nombre: '',
+    usuario: ''
+  }
 
   constructor(public router: Router, public authService: AuthService, 
     private menuCtrl: MenuController,
-    private alertController: AlertController) {
+    private alertController: AlertController,
+    private wsService: wsServices) {
 
     this.instituteList.push("Escuela Santa Clara");
     this.authService.aFauth.authState.subscribe(user => {
@@ -27,6 +33,7 @@ export class TeacherHomePage implements OnInit {
       this.usuario.nombre = user.displayName;
       this.usuario.email = user.email;
       this.usuario.foto = user.photoURL;
+      this.data.usuario = user.email;
     });
 
   }
@@ -52,7 +59,8 @@ export class TeacherHomePage implements OnInit {
     });
     await alert.present();
     let result = await alert.onDidDismiss();
-
+    this.data.nombre = result.data.values.name;
+    this.guardarInstitucion();
     this.instituteList.push(result.data.values.name);
     console.log(result.data.values.name);
   }
@@ -75,6 +83,10 @@ export class TeacherHomePage implements OnInit {
     await alert.present();
     let result = await alert.onDidDismiss();
     console.log(result);
+  }
+  //Metodo para guardar instituciones
+  guardarInstitucion(){
+    this.wsService.insertarInstitucion(this.data);
   }
 
   goToInstitute(){
