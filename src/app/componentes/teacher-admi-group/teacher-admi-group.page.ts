@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController} from '@ionic/angular';
+import { NotesService } from 'src/servicios/notes.service';
+
 
 @Component({
   selector: 'app-teacher-admi-group',
@@ -9,10 +11,42 @@ import { AlertController } from '@ionic/angular';
 })
 export class TeacherAdmiGroupPage implements OnInit {
 
-  constructor(public router: Router,
-    private alertController: AlertController) { }
+  constructor(public notesService: NotesService,
+    private alertController: AlertController, 
+    private navCtrl: NavController,
+    private router: Router){
+
+  }
 
   ngOnInit() {
+  }
+
+  addNote(){
+
+    this.alertController.create({
+      header: 'Nueva Tarea',
+      message: '¿Cual es el titulo de la tarea?',
+      inputs: [
+        {
+          type: 'text',
+          name: 'title'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar'
+        },
+        {
+          text: 'Aceptar',
+          handler: (data) => {
+            this.notesService.createNote(data.title);
+          }
+        }
+      ]
+    }).then((alert) => {
+      alert.present();
+    });
+
   }
 
   async addHomeWork(){

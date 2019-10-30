@@ -7,15 +7,22 @@
             </ion-button>
         </ion-buttons>
       <ion-title>Nombre del grupo</ion-title>
+      <ion-buttons slot="end">
+          <ion-button (click)="addNote()">
+            <ion-icon slot="icon-only" name="clipboard"></ion-icon>
+          </ion-button>
+        </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
  <ion-content>
-    <ion-button expand="block">Insertar Estudiantes</ion-button>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="addHomeWork()" color="tertiary">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
+  <ion-button expand="block">Estudiantes</ion-button>
+  <ion-list>
+      <ion-item button detail *ngFor="let note of notesService.notes" [routerLink]="'/notes/' + note.id" routerDirection="forward">
+        <ion-label>{{ note.title }}</ion-label>
+      </ion-item>
+    </ion-list>
+      
+    
  </ion-content>
 </ion-app>
