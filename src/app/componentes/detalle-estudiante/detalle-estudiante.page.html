@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/estudiantes"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Estudiante </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteNote()">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item-divider color="light">Nombre</ion-item-divider>
+  <ion-textarea>{{estudiante.nombre}}</ion-textarea>
+  <ion-item-divider color="light">Apellidos</ion-item-divider>
+  <ion-textarea>{{estudiante.apellido1 + " " + estudiante.apellido2}}</ion-textarea>
+  <ion-item-divider color="light">Carnet</ion-item-divider>
+  <ion-textarea>{{ estudiante.carnet }}</ion-textarea>
+  <ion-item-divider color="light">Correo Encargado</ion-item-divider>
+  <ion-textarea>{{ estudiante.correoEncargado }}</ion-textarea>
+</ion-content>

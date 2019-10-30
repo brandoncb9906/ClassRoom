@@ -49,7 +49,7 @@ export class TeacherAdmiGroupPage implements OnInit {
 
   }
 
-  async addHomeWork(){
+  /*async addHomeWork(){
     const alert = await this.alertController.create({
       header: 'Tareas',
       inputs: [
@@ -73,8 +73,12 @@ export class TeacherAdmiGroupPage implements OnInit {
     await alert.present();
     let result = await alert.onDidDismiss();
     console.log(result.data.values.name3);
-  }
+  }*/
 
+  goEstudiantes(){
+    this.router.navigate(['/estudiantes']);
+  }
+  estudiantes
   goBack(){
     this.router.navigate(['/teacher-groups']);
   }
