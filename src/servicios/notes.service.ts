@@ -57,6 +57,7 @@ export class NotesService {
     this.notes.push({
       id: id.toString(),
       title: title,
+      date: '',
       content: ''
     });
 
