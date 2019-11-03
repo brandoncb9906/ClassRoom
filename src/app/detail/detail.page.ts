@@ -13,7 +13,7 @@ import * as moment from "moment";
 export class DetailPage implements OnInit {
 
   public note: Note;
-  public date = moment().format("YYYY-MM-DD");;
+  public date = moment().format("YYYY-MM-DD");
 
   constructor(private route: ActivatedRoute, private notesService: NotesService, private navCtrl: NavController) { 
 
@@ -21,7 +21,7 @@ export class DetailPage implements OnInit {
     this.note = {
       id: '',
       title: '',
-      date: '00-00-0000',
+      date: this.date,
       content: ''
     };
 
@@ -45,9 +45,12 @@ export class DetailPage implements OnInit {
   }
 
   noteChanged(){
-    this.note.date = this.date;
+    console.log("this.date >>> " +  this.date);
+    console.log("note.date >>> " + this.note.date);
+    this.date = moment().format("YYYY-MM-DD")
     this.notesService.save();
-    console.log("FECHA >>> " + this.note.date);
+    console.log(this.note);
+
   }
 
   deleteNote(){

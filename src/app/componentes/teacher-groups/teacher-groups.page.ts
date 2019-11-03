@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { TeacherHomePage } from '../../componentes/teacher-home/teacher-home.page';
 import { AlertController } from '@ionic/angular';
 import { wsServices } from "../../../servicios/ws-services";
+import { AuthService } from '../../../servicios/auth.service';
 
 @Component({
   selector: 'app-teacher-groups',
@@ -15,12 +16,16 @@ export class TeacherGroupsPage implements OnInit {
 
   public data = {
     nombreGrupo: '',
+    nombreProfe: '',
     codigoGrupo: ''
   }
 
   constructor(public router: Router, 
     private alertController: AlertController,
-    private wsService: wsServices) { 
+    private wsService: wsServices,
+    public authService: AuthService) { 
+
+      
      }
 
   ngOnInit() {

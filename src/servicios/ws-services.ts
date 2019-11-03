@@ -75,9 +75,28 @@ constructor() { }
     });
   }
 
+  //Metodo para enviar los datos al backend para insetar un encargado
+  insertarEstudiante(req: any){
+    console.log("Datos estudiante: >>> "  + req)
+    axios.post(this.ws_url + 'agenda/addEstudiante', {
+      nombre: req.nombre,
+      apellido1: req.apellido1,
+      apellido2: req.apellido2,
+      carnet: req.carnet,
+      correoEncargado: req.correoEncargado
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+
   //Metodo para enviar los datos al backend para guardar el nombre de la institucion
   sendNameI(req: any){
-    console.log("NOMBRE?"+req)
+    console.log("INSTITUCION "+req)
     axios.post(this.ws_url + 'agenda/sendNameI', {
       nombre: req
     })
@@ -91,7 +110,7 @@ constructor() { }
 
   //Metodo para enviar los datos al backend para guardar el nombre del grupo
   sendNameG(req: any){
-    console.log("NOMBRE?"+req)
+    console.log("GRUPO "+req)
     axios.post(this.ws_url + 'agenda/sendNameG', {
       nombre: req
     })
@@ -103,5 +122,19 @@ constructor() { }
     });
   }
   
+  
+  //Metodo para enviar los datos al backend para guardar el correo
+  sendNameC(req: any){
+    console.log("USUARIO A ENVIAR "+ req)
+    axios.post(this.ws_url + 'agenda/sendNameC', {
+      nombre: req
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
 }

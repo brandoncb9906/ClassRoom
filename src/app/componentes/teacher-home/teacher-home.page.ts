@@ -24,8 +24,6 @@ export class TeacherHomePage implements OnInit {
     private menuCtrl: MenuController,
     private alertController: AlertController,
     private wsService: wsServices) {
-
-    this.instituteList.push("Escuela Santa Clara");
     this.authService.aFauth.authState.subscribe(user => {
       if (!user) {
         return;
@@ -84,13 +82,15 @@ export class TeacherHomePage implements OnInit {
     let result = await alert.onDidDismiss();
     console.log(result);
   }
+  
   //Metodo para guardar instituciones
   guardarInstitucion(){
     this.wsService.insertarInstitucion(this.data);
   }
 
   goToInstitute(b){
-    console.log(b);
+    //console.log(b);
+    this.wsService.sendNameC(this.usuario.email);
     this.wsService.sendNameI(b);
     this.router.navigate(['/teacher-groups']);
   }
