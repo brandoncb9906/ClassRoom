@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/teacher-admi-group"></ion-back-button>
+      <ion-back-button (click)="goBack()"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ note.title }}</ion-title>
     <ion-buttons slot="end">
@@ -15,7 +15,7 @@
 <ion-content class="ion-padding">
     <ion-item>
         <ion-label>Fecha de entrega</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" min="2016" max="2050" [(ngModel)]="this.date"></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="2016" max="2050" [(ngModel)]="this.note.date" (ionChange)="onChange()" [readonly]="note.inDB"></ion-datetime>
       </ion-item>
-  <ion-textarea (input)="noteChanged()" [(ngModel)]="note.content" placeholder="¿Cual es la descripcion de la tarea?"></ion-textarea>
+  <ion-textarea (input)="noteChanged()" [(ngModel)]="note.content" placeholder="¿Cual es la descripcion de la tarea?" [readonly]="note.inDB"></ion-textarea>
 </ion-content>

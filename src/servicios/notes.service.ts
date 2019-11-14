@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { Note } from '../app/interfaces/note';
+import * as moment from "moment"; 
 
 @Injectable({
   providedIn: 'root'
@@ -57,8 +58,9 @@ export class NotesService {
     this.notes.push({
       id: id.toString(),
       title: title,
-      date: '',
-      content: ''
+      date: moment().toISOString(),
+      content: '',
+      inDB: false
     });
 
     this.save();

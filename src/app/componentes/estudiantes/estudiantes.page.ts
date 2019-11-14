@@ -14,7 +14,15 @@ export class EstudiantesPage implements OnInit {
   constructor(private router: Router,
     private alertController: AlertController,
     private estudianteService: EstudianteService,
-    private wsService: wsServices) { }
+    private wsService: wsServices) {
+
+      /*this.wsService.getGrupos("").then(res => {
+        console.log("Get Grupos"+JSON.stringify(res.data));
+        this.groupsList = res.data.response.data.map(n => n.nombreGrupo);
+      })*/
+     }
+
+    public flag = false;
 
     public datosEstudiante = {
       nombre: '',
@@ -25,6 +33,22 @@ export class EstudiantesPage implements OnInit {
     }
 
   ngOnInit() {
+    this.estudianteService.estudiantes = [];
+    this.wsService.getEstudiantes("").then(res => {
+      console.log("Get Estudiantes"+JSON.stringify(res.data.response.data));
+      this.estudianteService.estudiantes = res.data.response.data.map(n => ({
+        id: "" + n.id_estudiante,
+        nombre: n.nombre,
+        apellido1: n.apellido1,
+        apellido2: n.apellido2,
+        carnet: n.carnet_estudiante[0],
+        correoEncargado: n.correo_encargado,
+      }));
+      //this.notesService.save();
+      console.log(`After processing: ${JSON.stringify(this.estudianteService.estudiantes)}`);
+      
+      //notesService.notes = res.data.response.data.map(n => n.nombreGrupo);
+    })
   }
 
   async addEstudiante(){ // Muestra una alerta para agregar un estudiante
@@ -59,6 +83,7 @@ export class EstudiantesPage implements OnInit {
           {
             text: 'Aceptar',
             handler: (data) => {
+              this.flag = true;
               this.estudianteService.createNote(data.nombre,data.apellido1,data.apellido2,data.carnet,data.correoEncargado);
             }
           }
@@ -66,23 +91,18 @@ export class EstudiantesPage implements OnInit {
     });
     await alert.present();
     let result = await alert.onDidDismiss();
-    this.datosEstudiante.nombre = result.data.values.nombre;
-    this.datosEstudiante.apellido1 = result.data.values.apellido1;
-    this.datosEstudiante.apellido2 = result.data.values.apellido2;
-    this.datosEstudiante.carnet = result.data.values.carnet;
-    this.datosEstudiante.correoEncargado = result.data.values.correoEncargado;
-    this.guardarEstudiante();
-    console.log(result.data.values.name);
+    if(this.flag){
+      this.datosEstudiante.nombre = result.data.values.nombre;
+      this.datosEstudiante.apellido1 = result.data.values.apellido1;
+      this.datosEstudiante.apellido2 = result.data.values.apellido2;
+      this.datosEstudiante.carnet = result.data.values.carnet;
+      this.datosEstudiante.correoEncargado = result.data.values.correoEncargado;
+      this.guardarEstudiante();
+    }
   }
 
   //Metodo para guardar estudiantes
   guardarEstudiante(){
-    console.log("DATOS ESTUDIANTE");
-    console.log(this.datosEstudiante.nombre);
-    console.log(this.datosEstudiante.apellido1);
-    console.log(this.datosEstudiante.apellido2);
-    console.log(this.datosEstudiante.carnet);
-    console.log(this.datosEstudiante.correoEncargado);
     this.wsService.insertarEstudiante(this.datosEstudiante);
   }
 

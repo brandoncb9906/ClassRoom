@@ -14,11 +14,11 @@
 
 <ion-content class="ion-padding">
   <ion-item-divider color="light">Nombre</ion-item-divider>
-  <ion-textarea>{{estudiante.nombre}}</ion-textarea>
+  <ion-textarea [readonly]="true">{{estudiante.nombre}}</ion-textarea>
   <ion-item-divider color="light">Apellidos</ion-item-divider>
-  <ion-textarea>{{estudiante.apellido1 + " " + estudiante.apellido2}}</ion-textarea>
+  <ion-textarea [readonly]="true">{{estudiante.apellido1 + " " + estudiante.apellido2}}</ion-textarea>
   <ion-item-divider color="light">Carnet</ion-item-divider>
-  <ion-textarea>{{ estudiante.carnet }}</ion-textarea>
+  <ion-textarea [readonly]="true">{{ estudiante.carnet }}</ion-textarea>
   <ion-item-divider color="light">Correo Encargado</ion-item-divider>
-  <ion-textarea>{{ estudiante.correoEncargado }}</ion-textarea>
+  <ion-textarea [readonly]="true">{{ estudiante.correoEncargado }}</ion-textarea>
 </ion-content>

@@ -32,6 +32,11 @@ export class TeacherHomePage implements OnInit {
       this.usuario.email = user.email;
       this.usuario.foto = user.photoURL;
       this.data.usuario = user.email;
+
+      this.wsService.getInstituciones(user.email).then(res => {
+        console.log(res.data);
+        this.instituteList = res.data.response.data.map(n => n.nombre);
+      })
     });
 
   }

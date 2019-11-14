@@ -24,7 +24,10 @@ export class TeacherGroupsPage implements OnInit {
     private alertController: AlertController,
     private wsService: wsServices,
     public authService: AuthService) { 
-
+      this.wsService.getGrupos("").then(res => {
+        console.log("Get Grupos"+JSON.stringify(res.data));
+        this.groupsList = res.data.response.data.map(n => n.nombreGrupo);
+      })
       
      }
 
