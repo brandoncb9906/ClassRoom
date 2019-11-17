@@ -177,4 +177,10 @@ constructor(private http: HttpClient) { }
     });
   }
 
+  getTareasEstudiante(req: any){
+    return axios.post(this.ws_url + 'agenda/getTareasEncargado', {
+      correo: req
+    });
+  }
+
 }
