@@ -31,7 +31,7 @@
     "firebase": "^6.6.2",
     "ionic-angular": "^3.9.9",
     "ionic-calendar": "^1.0.6",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "rxjs": "~6.5.1",
     "rxjs-compat": "^6.5.3",
     "tslib": "^1.9.0",
